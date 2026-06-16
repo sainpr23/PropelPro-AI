@@ -1,6 +1,7 @@
-PropelPro AI is an AI-powered proposal generation system that automatically creates professional business proposals based on client requirements. The platform leverages Large Language Models (LLMs) to generate structured proposals, store historical proposals for future reference, compare proposal versions, and generate downloadable PDF reports.
+**PropelPro AI** is an AI-powered proposal generation system that automatically creates professional business proposals based on client requirements. The platform leverages Large Language Models (LLMs) to generate structured proposals, store historical proposals for future reference, compare proposal versions, and generate downloadable PDF reports.
 
-📌 Features
+📌 **Features** 
+
 ✅ AI-powered proposal generation
 ✅ Executive Summary generation
 ✅ Detailed business proposal creation
