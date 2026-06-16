@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PropelPro AI – Sales Proposal Architect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-icon">P</div>
+      <div>
+        <div class="brand-name">PropelPro <span>AI</span></div>
+        <div class="brand-sub">Intelligent Sales Proposal Architect</div>
+      </div>
+    </div>
+  </header>
+ 
+  <!-- ===== MAIN LAYOUT ===== -->
+  <div class="layout">
+
+    <!-- LEFT: INPUT FORM -->
+    <div class="panel left-panel">
+
+      <!-- API KEY -->
+      <div class="card">
+        <div class="card-title">API Key</div>
+        <input type="password" id="apiKey" placeholder="Paste your Gemini API key here..." />
+        <div class="hint">Your key is never sent anywhere except Google's servers.</div>
+      </div>
+
+      <!-- CLIENT INFO -->
+      <div class="card">
+        <div class="card-title">Client Information</div>
+        <div class="row2">
+          <div class="field">
+            <label>Client / Company name</label>
+            <input type="text" id="clientName" placeholder="e.g. Acme Corp" />
+          </div>
+          <div class="field">
+            <label>Contact person</label>
+            <input type="text" id="contactPerson" placeholder="e.g. Jane Smith" />
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Industry</label>
+            <select id="industry">
+              <option value="">Select industry...</option>
+              <option>Technology / SaaS</option>
+              <option>Healthcare</option>
+              <option>Finance & Banking</option>
+              <option>Retail & E-commerce</option>
+              <option>Manufacturing</option>
+              <option>Education</option>
+              <option>Real Estate</option>
+              <option>Logistics & Supply Chain</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Company size</label>
+            <select id="companySize">
+              <option value="">Select size...</option>
+              <option>Startup (1–50)</option>
+              <option>SMB (51–500)</option>
+              <option>Mid-market (501–5000)</option>
+              <option>Enterprise (5000+)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT SCOPE -->
+      <div class="card">
+        <div class="card-title">Project Scope & Services</div>
+        <div class="field">
+          <label>Services included (click to select)</label>
+          <div class="chips" id="servicesChips">
+            <div class="chip" onclick="toggleChip(this)">Consulting</div>
+            <div class="chip" onclick="toggleChip(this)">Implementation</div>
+            <div class="chip" onclick="toggleChip(this)">Training</div>
+            <div class="chip" onclick="toggleChip(this)">Support & Maintenance</div>
+            <div class="chip" onclick="toggleChip(this)">Custom Development</div>
+            <div class="chip" onclick="toggleChip(this)">Integration</div>
+            <div class="chip" onclick="toggleChip(this)">Analytics & Reporting</div>
+            <div class="chip" onclick="toggleChip(this)">Cloud Migration</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Client's pain points / project description</label>
+          <textarea id="projectDesc" placeholder="Describe the client's key challenges and what they want to achieve..."></textarea>
+        </div>
+      </div>
+
+      <!-- BUDGET & TIMELINE -->
+      <div class="card">
+        <div class="card-title">Budget & Timeline</div>
+        <div class="field">
+          <label>Budget range: <span id="budgetDisplay">$50,000</span></label>
+          <input type="range" min="5000" max="500000" step="5000" value="50000"
+                 id="budgetSlider" oninput="updateBudget(this.value)" />
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Project duration</label>
+            <select id="duration">
+              <option>1–2 weeks</option>
+              <option>1 month</option>
+              <option selected>2–3 months</option>
+              <option>3–6 months</option>
+              <option>6–12 months</option>
+              <option>Ongoing retainer</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Proposal tone</label>
+            <select id="tone">
+              <option>Professional & formal</option>
+              <option selected>Consultative</option>
+              <option>Friendly & conversational</option>
+              <option>Technical & detailed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTIONS TO INCLUDE -->
+      <div class="card">
+        <div class="card-title">Sections to Generate</div>
+        <div class="chips" id="sectionsChips">
+          <div class="chip active" onclick="toggleChip(this)">Executive Summary</div>
+          <div class="chip active" onclick="toggleChip(this)">Problem Statement</div>
+          <div class="chip active" onclick="toggleChip(this)">Proposed Solution</div>
+          <div class="chip active" onclick="toggleChip(this)">Scope of Work</div>
+          <div class="chip active" onclick="toggleChip(this)">Pricing & Budget</div>
+          <div class="chip active" onclick="toggleChip(this)">Timeline</div>
+          <div class="chip active" onclick="toggleChip(this)">Risks & Assumptions</div>
+          <div class="chip" onclick="toggleChip(this)">Team & Credentials</div>
+          <div class="chip" onclick="toggleChip(this)">Case Studies</div>
+          <div class="chip" onclick="toggleChip(this)">Next Steps</div>
+        </div>
+      </div>
+
+      <!-- GENERATE BUTTON -->
+      <button class="btn-primary" onclick="generateProposal()">
+        Generate Proposal
+      </button>
+
+    </div>
+
+    <!-- RIGHT: OUTPUT PANEL -->
+    <div class="panel right-panel">
+
+      <!-- STATUS BAR -->
+      <div class="status-bar" id="statusBar">
+        <div class="status-dot"></div>
+        <span id="statusText">Fill in the form and click Generate Proposal</span>
+      </div>
+
+      <!-- ACTION BUTTONS (shown after generation) -->
+      <div class="action-row" id="actionRow" style="display:none;">
+        <button class="btn-secondary" onclick="generateExecutiveSummary()">Regenerate Summary</button>
+        <button class="btn-secondary" onclick="generateRisks()">Regenerate Risks</button>
+        <button class="btn-secondary" onclick="compareVersions()">Compare Versions</button>
+        <button class="btn-secondary" onclick="copyProposal()">Copy Text</button>
+      </div>
+
+      <!-- OUTPUT AREA -->
+      <div class="output-box" id="outputBox">
+        <div class="output-placeholder">
+          <div class="placeholder-icon">📄</div>
+          <div>Your generated proposal will appear here</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
