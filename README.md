@@ -1,2 +1,13 @@
-# PropelPro-AI
-An AI-driven business proposal generation platform using FastAPI, Ollama LLMs, and JavaScript that generates structured sales proposals based on client requirements. Implemented memory-based proposal retrieval, version comparison, and downloadable PDF report generation with clean frontend-backend integration.
+PropelPro AI is an AI-powered proposal generation system that automatically creates professional business proposals based on client requirements. The platform leverages Large Language Models (LLMs) to generate structured proposals, store historical proposals for future reference, compare proposal versions, and generate downloadable PDF reports.
+
+📌 Features
+✅ AI-powered proposal generation
+✅ Executive Summary generation
+✅ Detailed business proposal creation
+✅ Risk & Assumption analysis
+✅ Memory-based proposal storage
+✅ Smart retrieval of previous proposals
+✅ Version comparison between proposals
+✅ Downloadable PDF reports
+✅ FastAPI REST backend
+✅ Interactive web-based frontend
